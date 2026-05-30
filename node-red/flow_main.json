@@ -1,0 +1,1619 @@
+[
+    {
+        "id": "2c1ce87696607fde",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7467997437ceec3a",
+        "type": "group",
+        "z": "2c1ce87696607fde",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "00b9249fbaf372fb"
+        ],
+        "x": 554,
+        "y": 179,
+        "w": 152,
+        "h": 82
+    },
+    {
+        "id": "7724ed1164995a0c",
+        "type": "group",
+        "z": "2c1ce87696607fde",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "5449529815565927"
+        ],
+        "x": 554,
+        "y": 399,
+        "w": 152,
+        "h": 82
+    },
+    {
+        "id": "c85d2c4df573d16c",
+        "type": "mqtt in",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/temp",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "545a2c5a4d83e7b3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 220,
+        "wires": [
+            [
+                "00b9249fbaf372fb",
+                "36b975609d4fcade"
+            ]
+        ]
+    },
+    {
+        "id": "00b9249fbaf372fb",
+        "type": "ui_gauge",
+        "z": "2c1ce87696607fde",
+        "g": "7467997437ceec3a",
+        "name": "",
+        "group": "dad273797d91ca0a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "C",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "45",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 630,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "6af43a506374a677",
+        "type": "ui_chart",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "group": "dad273797d91ca0a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "20",
+        "ymax": "30",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 630,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ac24e72d3e229767",
+        "type": "ui_toast",
+        "z": "2c1ce87696607fde",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 840,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "36b975609d4fcade",
+        "type": "switch",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "30",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 470,
+        "y": 320,
+        "wires": [
+            [
+                "3aba5c784f2c7998"
+            ],
+            [
+                "6af43a506374a677"
+            ],
+            [
+                "52772603e9a9a073"
+            ]
+        ]
+    },
+    {
+        "id": "3aba5c784f2c7998",
+        "type": "change",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "esp32 sleeping",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 300,
+        "wires": [
+            [
+                "ac24e72d3e229767"
+            ]
+        ]
+    },
+    {
+        "id": "456a0f7658b3a6eb",
+        "type": "mqtt in",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/hum",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "545a2c5a4d83e7b3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 480,
+        "wires": [
+            [
+                "5449529815565927",
+                "32b945ac12c6e90a"
+            ]
+        ]
+    },
+    {
+        "id": "2240a9aded1be648",
+        "type": "ui_chart",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "group": "7c1bb58eb08d3489",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c238763e87d20ebb",
+        "type": "ui_toast",
+        "z": "2c1ce87696607fde",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 800,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "32b945ac12c6e90a",
+        "type": "switch",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "80",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 430,
+        "y": 560,
+        "wires": [
+            [
+                "be0edf6c5d964e1a"
+            ],
+            [
+                "2240a9aded1be648"
+            ],
+            [
+                "52772603e9a9a073"
+            ]
+        ]
+    },
+    {
+        "id": "be0edf6c5d964e1a",
+        "type": "change",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "esp32 sleeping",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 540,
+        "wires": [
+            [
+                "c238763e87d20ebb"
+            ]
+        ]
+    },
+    {
+        "id": "5449529815565927",
+        "type": "ui_gauge",
+        "z": "2c1ce87696607fde",
+        "g": "7724ed1164995a0c",
+        "name": "",
+        "group": "7c1bb58eb08d3489",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "%",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "45",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 630,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "53abf85521758726",
+        "type": "mqtt in",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/lux",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "545a2c5a4d83e7b3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 680,
+        "wires": [
+            [
+                "407f0abf65d33296",
+                "a2f07e64cca55f8c"
+            ]
+        ]
+    },
+    {
+        "id": "57309ab8a617c22a",
+        "type": "ui_chart",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "group": "91119a5a22d2454d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae897c61764a1bc6",
+        "type": "ui_toast",
+        "z": "2c1ce87696607fde",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 800,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "a2f07e64cca55f8c",
+        "type": "switch",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 430,
+        "y": 760,
+        "wires": [
+            [
+                "2b0f9ad98a404ae5"
+            ],
+            [
+                "57309ab8a617c22a"
+            ]
+        ]
+    },
+    {
+        "id": "2b0f9ad98a404ae5",
+        "type": "change",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "esp32 sleeping",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 740,
+        "wires": [
+            [
+                "ae897c61764a1bc6"
+            ]
+        ]
+    },
+    {
+        "id": "407f0abf65d33296",
+        "type": "ui_gauge",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "group": "91119a5a22d2454d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "lux",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "3000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 590,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "0267e79d7c93f166",
+        "type": "mqtt in",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/soil",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "545a2c5a4d83e7b3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 880,
+        "wires": [
+            [
+                "adcdc7469f41bdb4",
+                "a626fa0d49b29c35"
+            ]
+        ]
+    },
+    {
+        "id": "78b6fb706118e4d8",
+        "type": "ui_chart",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "group": "530f856aa44b0aef",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 570,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4742d584add5dfe4",
+        "type": "ui_toast",
+        "z": "2c1ce87696607fde",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 800,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "a626fa0d49b29c35",
+        "type": "switch",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "lt",
+                "v": "15",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 430,
+        "y": 940,
+        "wires": [
+            [
+                "b7ae14caad4dcdd0"
+            ],
+            [
+                "78b6fb706118e4d8"
+            ],
+            [
+                "52772603e9a9a073"
+            ]
+        ]
+    },
+    {
+        "id": "b7ae14caad4dcdd0",
+        "type": "change",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "esp32 sleeping",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 920,
+        "wires": [
+            [
+                "4742d584add5dfe4"
+            ]
+        ]
+    },
+    {
+        "id": "adcdc7469f41bdb4",
+        "type": "ui_gauge",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "group": "530f856aa44b0aef",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "%",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 590,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "7efa4f852a5e76a6",
+        "type": "ui_text",
+        "z": "2c1ce87696607fde",
+        "group": "444b5e9e1b5a1e83",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "GREEN HOUSE CONTROL",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "center",
+        "style": true,
+        "font": "Arial Black,Arial Black,Gadget,sans-serif",
+        "fontSize": "34",
+        "color": "#20971a",
+        "x": 460,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "cc965ca617ac0ac4",
+        "type": "ui_template",
+        "z": "2c1ce87696607fde",
+        "group": "444b5e9e1b5a1e83",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    .nr-dashboard-text.center {\n        width: 100%;\n        text-align: center !important;\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "7efa4f852a5e76a6"
+            ]
+        ]
+    },
+    {
+        "id": "ec87388a632db4b6",
+        "type": "mqtt in",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/air",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "545a2c5a4d83e7b3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 1060,
+        "wires": [
+            [
+                "a068f05398a9146a",
+                "7bf194227cee80c8"
+            ]
+        ]
+    },
+    {
+        "id": "bd966175623710ab",
+        "type": "ui_chart",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "group": "dd11e120a1a17ecc",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "218074313b5f076d",
+        "type": "ui_toast",
+        "z": "2c1ce87696607fde",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 780,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "7bf194227cee80c8",
+        "type": "switch",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "500",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 410,
+        "y": 1120,
+        "wires": [
+            [
+                "93ef5d30c1d5d636"
+            ],
+            [
+                "bd966175623710ab"
+            ],
+            [
+                "52772603e9a9a073"
+            ]
+        ]
+    },
+    {
+        "id": "93ef5d30c1d5d636",
+        "type": "change",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "esp32 sleeping",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 1100,
+        "wires": [
+            [
+                "218074313b5f076d"
+            ]
+        ]
+    },
+    {
+        "id": "a068f05398a9146a",
+        "type": "ui_gauge",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "group": "dd11e120a1a17ecc",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "%",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "300",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 570,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "aa4a01c4e743808f",
+        "type": "ui_template",
+        "z": "2c1ce87696607fde",
+        "group": "5faa0b5c97e98033",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div style=\"\n    text-align:center;\n    padding:10px;\n    font-size:20px;\n    font-weight:bold;\n    color:white;\n    background: {{msg.payload ? '#2ecc71' : '#e74c3c'}};\n    border-radius:10px;\n\">\n    {{msg.payload ? 'ON' : 'OFF'}}\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 620,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "44de4e876952ad6a",
+        "type": "mqtt in",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/pomp_relay",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "545a2c5a4d83e7b3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 390,
+        "y": 1260,
+        "wires": [
+            [
+                "aa4a01c4e743808f"
+            ]
+        ]
+    },
+    {
+        "id": "e11900cde911043a",
+        "type": "ui_template",
+        "z": "2c1ce87696607fde",
+        "group": "6fb240c5007bf03f",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div style=\"\n    text-align:center;\n    padding:10px;\n    font-size:20px;\n    font-weight:bold;\n    color:white;\n    background: {{msg.payload ? '#2ecc71' : '#e74c3c'}};\n    border-radius:10px;\n\">\n    {{msg.payload ? 'ON' : 'OFF'}}\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 620,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8184e15f9f2a124",
+        "type": "mqtt in",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/light_relay",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "545a2c5a4d83e7b3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 380,
+        "y": 1340,
+        "wires": [
+            [
+                "e11900cde911043a"
+            ]
+        ]
+    },
+    {
+        "id": "7c5912c35dc51d77",
+        "type": "ui_template",
+        "z": "2c1ce87696607fde",
+        "group": "3ed248fb279da774",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div style=\"text-align:center; font-size:20px;\">\n    <div>Вентиляція</div>\n\n    <div style=\"font-size:40px; margin:10px;\">\n        {{msg.payload}}°\n    </div>\n\n    <div style=\"\n        width:100%;\n        height:20px;\n        background:#ddd;\n        border-radius:10px;\n        overflow:hidden;\n    \">\n        <div style=\"\n            width: {{msg.payload/180*100}}%;\n            height:100%;\n            background:#2ecc71;\n        \"></div>\n    </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 580,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "95076f0349e6302b",
+        "type": "mqtt in",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/servo",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "545a2c5a4d83e7b3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 370,
+        "y": 1420,
+        "wires": [
+            [
+                "7c5912c35dc51d77"
+            ]
+        ]
+    },
+    {
+        "id": "b61bbb8830289cac",
+        "type": "mqtt in",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/time",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "545a2c5a4d83e7b3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 80,
+        "y": 240,
+        "wires": [
+            [
+                "a30fb78ccddcdd68"
+            ]
+        ]
+    },
+    {
+        "id": "a30fb78ccddcdd68",
+        "type": "ui_text",
+        "z": "2c1ce87696607fde",
+        "group": "444b5e9e1b5a1e83",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Останній час оновлення:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 170,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "225dc02b3660f310",
+        "type": "mqtt out",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/pomp_relay/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "545a2c5a4d83e7b3",
+        "x": 660,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "7210f92a4500aaf2",
+        "type": "mqtt out",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/light_relay/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "545a2c5a4d83e7b3",
+        "x": 680,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "76736d429b25a288",
+        "type": "mqtt out",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/servo/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "545a2c5a4d83e7b3",
+        "x": 660,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "6d41ab6e8331be65",
+        "type": "ui_slider",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "label": "slider",
+        "tooltip": "",
+        "group": "3ed248fb279da774",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "180",
+        "step": 1,
+        "className": "",
+        "x": 350,
+        "y": 1680,
+        "wires": [
+            [
+                "76736d429b25a288"
+            ]
+        ]
+    },
+    {
+        "id": "c7791eca4be1bf73",
+        "type": "ui_switch",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "label": "Перемикач",
+        "tooltip": "",
+        "group": "6fb240c5007bf03f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "false",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "true",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 370,
+        "y": 1620,
+        "wires": [
+            [
+                "7210f92a4500aaf2"
+            ]
+        ]
+    },
+    {
+        "id": "309769feeeda64b0",
+        "type": "ui_switch",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "label": "Перемикач",
+        "tooltip": "",
+        "group": "5faa0b5c97e98033",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "false",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "true",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 370,
+        "y": 1560,
+        "wires": [
+            [
+                "225dc02b3660f310"
+            ]
+        ]
+    },
+    {
+        "id": "102e5a4160857940",
+        "type": "ui_dropdown",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "07e185b9f8c6c526",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Ручний",
+                "value": "MAN",
+                "type": "str"
+            },
+            {
+                "label": "Авто",
+                "value": "AUTO",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 1060,
+        "y": 100,
+        "wires": [
+            [
+                "41eaed760cbbea24"
+            ]
+        ]
+    },
+    {
+        "id": "6e02544047252f4c",
+        "type": "ui_toast",
+        "z": "2c1ce87696607fde",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1260,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "52772603e9a9a073",
+        "type": "change",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Увага - критичний стан!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 440,
+        "wires": [
+            [
+                "6e02544047252f4c"
+            ]
+        ]
+    },
+    {
+        "id": "41eaed760cbbea24",
+        "type": "mqtt out",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/mode/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "545a2c5a4d83e7b3",
+        "x": 1280,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "f963b2fa918c44f0",
+        "type": "mqtt in",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "topic": "greenhouse/mode",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "545a2c5a4d83e7b3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 870,
+        "y": 200,
+        "wires": [
+            [
+                "3e4caf7270573fbd"
+            ]
+        ]
+    },
+    {
+        "id": "3e4caf7270573fbd",
+        "type": "ui_button",
+        "z": "2c1ce87696607fde",
+        "name": "",
+        "group": "07e185b9f8c6c526",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "{{msg.payload}}",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1070,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "545a2c5a4d83e7b3",
+        "type": "mqtt-broker",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dad273797d91ca0a",
+        "type": "ui_group",
+        "name": "Температура повітря",
+        "tab": "1c626c2e1fb68be9",
+        "order": 2,
+        "disp": true,
+        "width": "5",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7c1bb58eb08d3489",
+        "type": "ui_group",
+        "name": "Вологість повітря",
+        "tab": "1c626c2e1fb68be9",
+        "order": 3,
+        "disp": true,
+        "width": "5",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "91119a5a22d2454d",
+        "type": "ui_group",
+        "name": "Освітленність",
+        "tab": "1c626c2e1fb68be9",
+        "order": 4,
+        "disp": true,
+        "width": "5",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "530f856aa44b0aef",
+        "type": "ui_group",
+        "name": "Вологість грунту",
+        "tab": "1c626c2e1fb68be9",
+        "order": 5,
+        "disp": true,
+        "width": "5",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "444b5e9e1b5a1e83",
+        "type": "ui_group",
+        "name": "UPPER",
+        "tab": "1c626c2e1fb68be9",
+        "order": 1,
+        "disp": false,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "dd11e120a1a17ecc",
+        "type": "ui_group",
+        "name": "Якість повітря",
+        "tab": "1c626c2e1fb68be9",
+        "order": 6,
+        "disp": true,
+        "width": "5",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5faa0b5c97e98033",
+        "type": "ui_group",
+        "name": "Полив води",
+        "tab": "1c626c2e1fb68be9",
+        "order": 7,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6fb240c5007bf03f",
+        "type": "ui_group",
+        "name": "Освітлення",
+        "tab": "1c626c2e1fb68be9",
+        "order": 8,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3ed248fb279da774",
+        "type": "ui_group",
+        "name": "Вентиляція,кут серво",
+        "tab": "1c626c2e1fb68be9",
+        "order": 9,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "07e185b9f8c6c526",
+        "type": "ui_group",
+        "name": "Режим роботи",
+        "tab": "1c626c2e1fb68be9",
+        "order": 10,
+        "disp": true,
+        "width": 4,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1c626c2e1fb68be9",
+        "type": "ui_tab",
+        "name": "main",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": true
+    },
+    {
+        "id": "2e72d5945251c2b8",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
